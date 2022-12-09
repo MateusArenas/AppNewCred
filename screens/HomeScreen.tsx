@@ -9,8 +9,9 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
     <View style={styles.container}>
       <FlatList style={{ flex: 1 }}
         data={[{}, {}, {}]}
+        contentContainerStyle={{ flexGrow: 1 }}
         renderItem={({ item }) => (
-            <View style={[{  }]}>
+            <View style={[{ flexShrink: 1 }]}>
                 <Pressable 
                     onPress={() => navigation.navigate('ChatBot')}
                     style={({ pressed }) => [
@@ -18,22 +19,19 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
                         pressed && { backgroundColor: 'rgba(0,0,0,.1)' }
                     ]} 
                 />
-                <View style={[{ flexDirection: 'row', padding: 8, zIndex: 1 }]}>
-                    <View style={[
-                        { width: 60, height: 60, borderRadius: 60 },
-                        { backgroundColor: 'blue' },
-                        { alignSelf: 'center' },
-                        { zIndex: 3 }
-                    ]} />
-                    <View style={[{ flex: 1, padding: 8 }]}>
-                        <Text style={{ fontSize: 18 }}>Lorem ipsum</Text>
-                        <Text style={{ fontSize: 14, width: '100%' }}>Lorem ipsum dolor sit amet consectetur </Text>
+                <View style={{ flex: 1, paddingHorizontal: 12, zIndex: 1 }}>
+                    <View style={[{ flexDirection: 'row', padding: 12 }]}>
+                        <View style={[styles.avatar]} />
+                        <View style={[{ flex: 1, padding: 8 }]}>
+                            <Text style={[styles.title]}>Lorem ipsum</Text>
+                            <Text numberOfLines={1} style={[styles.description]}>Lorem ipsum dolor sit amet consectetur </Text>
+                        </View>
+                        <View style={[{ padding: 8 }]}>
+                            <Text style={{ fontSize: 12 }}>12/10/200</Text>
+                        </View>
                     </View>
-                    <View style={[{ padding: 8 }]}>
-                        <Text style={{ fontSize: 12 }}>12/10/200</Text>
-                    </View>
+                    <View style={[styles.separator]} />
                 </View>
-                <View style={[styles.separator]} />
             </View>
         )}
       />
@@ -44,8 +42,6 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   avatar: {
     width: 60, 
@@ -56,13 +52,18 @@ const styles = StyleSheet.create({
     zIndex: 3
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontWeight: '500',
+    marginBottom: 2
+  },
+  description: {
+    fontSize: 14,
+    flex: 1,
   },
   separator: {
     height: 1,
     alignSelf: 'center',
-    width: '90%',
+    width: '100%',
     backgroundColor: 'black', 
     opacity: .2
   },
